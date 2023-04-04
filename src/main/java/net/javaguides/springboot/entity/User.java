@@ -2,7 +2,6 @@ package net.javaguides.springboot.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.http.HttpStatusCode;
 
 @Getter
 @Setter

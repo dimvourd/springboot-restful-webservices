@@ -1,5 +1,6 @@
 package net.javaguides.springboot.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.UserDto;
 import net.javaguides.springboot.entity.User;
@@ -22,8 +23,9 @@ public class UserController {
     private UserService userService;
 
     // build create User REST API
+
     @PostMapping
-    public ResponseEntity<UserDto> createUser( @RequestBody UserDto user){
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto user){
         UserDto saveUser = userService.createUser(user);
         return new ResponseEntity<>(saveUser, HttpStatus.CREATED);
     }
@@ -44,7 +46,7 @@ public class UserController {
     // Build updated user by REST API
     @PutMapping("{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long userId,
-                                           @RequestBody UserDto userDto){
+                                           @Valid @RequestBody UserDto userDto){
         userDto.setId(userId);
         UserDto updatedUser = userService.updateUser(userDto);
 
